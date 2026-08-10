@@ -67,8 +67,8 @@ nav:
 exclude_docs: |
   /templates-linkml/
 
-site_url: https://TerraneXus.github.io/ofp-datamodel
-repo_url: https://github.com/TerraneXus/ofp-datamodel
+site_url: https://ofp-datamodel.terranexus.com.au
+repo_url: https://github.com/chough80/ofp-datamodel
 
 # Uncomment this block to enable use of Google Analytics.
 # Replace the property value with your own ID.

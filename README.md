@@ -6,7 +6,7 @@ LinkML data model for Open Footprint-aligned Scope 1/2 emissions reporting
 
 ## Documentation Website
 
-[https://TerraneXus.github.io/ofp-datamodel](https://TerraneXus.github.io/ofp-datamodel)
+[https://ofp-datamodel.terranexus.com.au](https://ofp-datamodel.terranexus.com.au)
 
 ## Repository Structure
 
