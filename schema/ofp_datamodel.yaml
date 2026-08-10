@@ -634,7 +634,7 @@ classes:
     tree_root: true
 metamodel_version: 1.11.0
 source_file: ofp_datamodel.yaml
-source_file_date: '2026-08-10T09:50:33'
+source_file_date: '2026-08-10T10:53:40'
 source_file_size: 3512
-generation_date: '2026-08-10T09:50:45'
+generation_date: '2026-08-10T10:53:49'
 
