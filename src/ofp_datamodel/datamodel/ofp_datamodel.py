@@ -1,5 +1,5 @@
 # Auto generated from ofp_datamodel.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-08T17:05:18
+# Generation date: 2026-08-10T13:35:35
 # Schema: ofp-datamodel
 #
 # id: https://w3id.org/TerraneXus/ofp-datamodel
