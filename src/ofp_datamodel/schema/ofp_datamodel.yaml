@@ -1,5 +1,5 @@
 ---
-id: https://w3id.org/TerraneXus/ofp-datamodel
+id: https://w3id.org/terranexus/ofp-datamodel
 name: ofp-datamodel
 title: ofp-datamodel
 description: |-
@@ -9,7 +9,7 @@ see_also:
   - https://ofp-datamodel.terranexus.com.au
 
 prefixes:
-  ofp_datamodel: https://w3id.org/TerraneXus/ofp-datamodel/
+  ofp_datamodel: https://w3id.org/terranexus/ofp-datamodel/
   linkml: https://w3id.org/linkml/
   biolink: https://w3id.org/biolink/vocab/
   schema: http://schema.org/
