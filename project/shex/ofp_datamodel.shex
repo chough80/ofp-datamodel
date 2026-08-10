@@ -1,5 +1,5 @@
 # metamodel_version: 1.11.0
-BASE <https://w3id.org/TerraneXus/ofp-datamodel/>
+BASE <https://w3id.org/terranexus/ofp-datamodel/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
@@ -61,7 +61,7 @@ linkml:Sparqlpath xsd:string
           schema1:birthDate @linkml:Date ? ;
           <age_in_years> @linkml:Integer ? ;
           <vital_status> [ <http://purl.obolibrary.org/obo/PATO_0001421> <http://purl.obolibrary.org/obo/PATO_0001422>
-             <https://w3id.org/TerraneXus/ofp-datamodel/PersonStatus#UNKNOWN> ] ?
+             <https://w3id.org/terranexus/ofp-datamodel/PersonStatus#UNKNOWN> ] ?
        ) ;
        rdf:type [ <Person> ]
     )

@@ -113,7 +113,7 @@
             "type": "string"
         }
     },
-    "$id": "https://w3id.org/TerraneXus/ofp-datamodel",
+    "$id": "https://w3id.org/terranexus/ofp-datamodel",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
     "description": "A holder for Person objects",

@@ -1,7 +1,7 @@
 @prefix PATO: <http://purl.obolibrary.org/obo/PATO_> .
 @prefix dcterms: <http://purl.org/dc/terms/> .
 @prefix linkml: <https://w3id.org/linkml/> .
-@prefix ofp_datamodel: <https://w3id.org/TerraneXus/ofp-datamodel/> .
+@prefix ofp_datamodel: <https://w3id.org/terranexus/ofp-datamodel/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -9,11 +9,11 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<https://w3id.org/TerraneXus/ofp-datamodel.owl.ttl> a owl:Ontology ;
+<https://w3id.org/terranexus/ofp-datamodel.owl.ttl> a owl:Ontology ;
     rdfs:label "ofp-datamodel" ;
     dcterms:license "LicenseRef-Custom" ;
     dcterms:title "ofp-datamodel" ;
-    rdfs:seeAlso <https://TerraneXus.github.io/ofp-datamodel> ;
+    rdfs:seeAlso <https://ofp-datamodel.terranexus.com.au> ;
     skos:definition "LinkML data model for Open Footprint-aligned Scope 1/2 emissions reporting" .
 
 ofp_datamodel:PersonCollection a owl:Class ;
@@ -25,52 +25,58 @@ ofp_datamodel:PersonCollection a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty ofp_datamodel:people ] ;
     skos:definition "A holder for Person objects" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:NamedThing a owl:Class ;
     rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty ofp_datamodel:name ],
+            owl:onProperty ofp_datamodel:id ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty ofp_datamodel:description ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty ofp_datamodel:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty ofp_datamodel:name ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty ofp_datamodel:name ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty ofp_datamodel:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty ofp_datamodel:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty ofp_datamodel:id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty ofp_datamodel:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty ofp_datamodel:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty ofp_datamodel:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty ofp_datamodel:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
             owl:onProperty ofp_datamodel:id ] ;
     skos:definition "A generic grouping for any identifiable entity" ;
     skos:exactMatch schema1:Thing ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:Person a owl:Class ;
     rdfs:label "Person" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
+            owl:maxCardinality 1 ;
             owl:onProperty ofp_datamodel:primary_email ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty ofp_datamodel:age_in_years ],
+            owl:onProperty ofp_datamodel:primary_email ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty ofp_datamodel:vital_status ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty ofp_datamodel:vital_status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty ofp_datamodel:age_in_years ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty ofp_datamodel:birth_date ],
@@ -78,19 +84,13 @@ ofp_datamodel:Person a owl:Class ;
             owl:allValuesFrom xsd:integer ;
             owl:onProperty ofp_datamodel:age_in_years ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty ofp_datamodel:primary_email ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:date ;
-            owl:onProperty ofp_datamodel:birth_date ],
+            owl:minCardinality 0 ;
+            owl:onProperty ofp_datamodel:age_in_years ],
         [ a owl:Restriction ;
             owl:allValuesFrom [ a rdfs:Datatype ;
                     owl:onDatatype xsd:string ;
                     owl:withRestrictions ( [ xsd:pattern "^\\S+@[\\S+\\.]+\\S+" ] ) ] ;
             owl:onProperty ofp_datamodel:primary_email ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty ofp_datamodel:age_in_years ],
         [ a owl:Restriction ;
             owl:allValuesFrom ofp_datamodel:PersonStatus ;
             owl:onProperty ofp_datamodel:vital_status ],
@@ -98,11 +98,11 @@ ofp_datamodel:Person a owl:Class ;
             owl:maxCardinality 1 ;
             owl:onProperty ofp_datamodel:birth_date ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty ofp_datamodel:vital_status ],
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty ofp_datamodel:birth_date ],
         ofp_datamodel:NamedThing ;
     skos:definition "Represents a Person" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 PATO:0001421 a owl:Class ;
     rdfs:label "ALIVE" ;
@@ -114,61 +114,61 @@ PATO:0001422 a owl:Class ;
     rdfs:subClassOf ofp_datamodel:PersonStatus ;
     skos:definition "the person is deceased" .
 
-<https://w3id.org/TerraneXus/ofp-datamodel/PersonStatus#UNKNOWN> a owl:Class ;
+<https://w3id.org/terranexus/ofp-datamodel/PersonStatus#UNKNOWN> a owl:Class ;
     rdfs:label "UNKNOWN" ;
     rdfs:subClassOf ofp_datamodel:PersonStatus ;
     skos:definition "the vital status is not known" .
 
 ofp_datamodel:people a owl:ObjectProperty ;
     rdfs:label "people" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:age_in_years a owl:DatatypeProperty ;
     rdfs:label "age_in_years" ;
     rdfs:range xsd:integer ;
     skos:definition "Number of years since birth" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:birth_date a owl:DatatypeProperty ;
     rdfs:label "birth_date" ;
     rdfs:range xsd:date ;
     skos:definition "Date on which a person is born" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:description a owl:DatatypeProperty ;
     rdfs:label "description" ;
     skos:definition "A human-readable description for a thing" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:id a owl:DatatypeProperty ;
     rdfs:label "id" ;
     rdfs:range xsd:anyURI ;
     skos:definition "A unique identifier for a thing" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:name a owl:DatatypeProperty ;
     rdfs:label "name" ;
     skos:definition "A human-readable name for a thing" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:primary_email a owl:DatatypeProperty ;
     rdfs:label "primary_email" ;
     skos:definition "The main email address of a person" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:vital_status a owl:ObjectProperty ;
     rdfs:label "vital_status" ;
     rdfs:range ofp_datamodel:PersonStatus ;
     skos:definition "living or dead status" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> .
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> .
 
 ofp_datamodel:PersonStatus a owl:Class ;
     rdfs:label "PersonStatus" ;
-    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/TerraneXus/ofp-datamodel/PersonStatus#UNKNOWN> ) ;
+    owl:unionOf ( PATO:0001421 PATO:0001422 <https://w3id.org/terranexus/ofp-datamodel/PersonStatus#UNKNOWN> ) ;
     skos:definition "The vital status of a person" ;
-    skos:inScheme <https://w3id.org/TerraneXus/ofp-datamodel> ;
+    skos:inScheme <https://w3id.org/terranexus/ofp-datamodel> ;
     linkml:permissible_values PATO:0001421,
         PATO:0001422,
-        <https://w3id.org/TerraneXus/ofp-datamodel/PersonStatus#UNKNOWN> .
+        <https://w3id.org/terranexus/ofp-datamodel/PersonStatus#UNKNOWN> .
 
 

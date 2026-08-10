@@ -1,8 +1,8 @@
 # Auto generated from ofp_datamodel.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-10T13:35:35
+# Generation date: 2026-08-10T16:50:43
 # Schema: ofp-datamodel
 #
-# id: https://w3id.org/TerraneXus/ofp-datamodel
+# id: https://w3id.org/terranexus/ofp-datamodel
 # description: LinkML data model for Open Footprint-aligned Scope 1/2 emissions reporting
 # license: LicenseRef-Custom
 
@@ -67,7 +67,7 @@ PATO = CurieNamespace('PATO', 'http://purl.obolibrary.org/obo/PATO_')
 BIOLINK = CurieNamespace('biolink', 'https://w3id.org/biolink/vocab/')
 EXAMPLE = CurieNamespace('example', 'http://www.example.org/rdf#')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
-OFP_DATAMODEL = CurieNamespace('ofp_datamodel', 'https://w3id.org/TerraneXus/ofp-datamodel/')
+OFP_DATAMODEL = CurieNamespace('ofp_datamodel', 'https://w3id.org/terranexus/ofp-datamodel/')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 DEFAULT_ = OFP_DATAMODEL
 

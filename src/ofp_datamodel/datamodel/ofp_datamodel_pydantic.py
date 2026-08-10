@@ -70,7 +70,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'ofp_datamodel',
      'default_range': 'string',
      'description': 'LinkML data model for Open Footprint-aligned Scope 1/2 '
                     'emissions reporting',
-     'id': 'https://w3id.org/TerraneXus/ofp-datamodel',
+     'id': 'https://w3id.org/terranexus/ofp-datamodel',
      'imports': ['linkml:types'],
      'license': 'LicenseRef-Custom',
      'name': 'ofp-datamodel',
@@ -83,10 +83,10 @@ linkml_meta = LinkMLMeta({'default_prefix': 'ofp_datamodel',
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'ofp_datamodel': {'prefix_prefix': 'ofp_datamodel',
-                                    'prefix_reference': 'https://w3id.org/TerraneXus/ofp-datamodel/'},
+                                    'prefix_reference': 'https://w3id.org/terranexus/ofp-datamodel/'},
                   'schema': {'prefix_prefix': 'schema',
                              'prefix_reference': 'http://schema.org/'}},
-     'see_also': ['https://TerraneXus.github.io/ofp-datamodel'],
+     'see_also': ['https://ofp-datamodel.terranexus.com.au'],
      'source_file': 'src/ofp_datamodel/schema/ofp_datamodel.yaml',
      'title': 'ofp-datamodel'} )
 
@@ -114,7 +114,7 @@ class NamedThing(ConfiguredBaseModel):
     A generic grouping for any identifiable entity
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Thing',
-         'from_schema': 'https://w3id.org/TerraneXus/ofp-datamodel'})
+         'from_schema': 'https://w3id.org/terranexus/ofp-datamodel'})
 
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
@@ -125,7 +125,7 @@ class Person(NamedThing):
     """
     Represents a Person
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/TerraneXus/ofp-datamodel',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/terranexus/ofp-datamodel',
          'slot_usage': {'primary_email': {'name': 'primary_email',
                                           'pattern': '^\\S+@[\\S+\\.]+\\S+'}}})
 
@@ -155,7 +155,7 @@ class PersonCollection(ConfiguredBaseModel):
     """
     A holder for Person objects
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/TerraneXus/ofp-datamodel', 'tree_root': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/terranexus/ofp-datamodel', 'tree_root': True})
 
     people: Optional[list[Person]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['PersonCollection']} })
 
