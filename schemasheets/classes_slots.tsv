@@ -1,0 +1,20 @@
+class	slot	is_a	identifier	multiplicity	range	multivalued	inlined_as_list	slot_uri	pattern	description
+> class	slot	is_a	identifier	cardinality	range	multivalued	inlined_as_list	slot_uri	pattern	description
+	id		yes	1	uriorcurie			schema:identifier		A unique identifier for a thing
+	name		no	0..1	string			schema:name		A human-readable name for a thing
+	description		no	0..1	string			schema:description		A human-readable description for a thing
+	primary_email		no	0..1	string			schema:email		The main email address of a person
+	birth_date		no	0..1	date			schema:birthDate		Date on which a person is born
+	age_in_years		no	0..1	integer					Number of years since birth
+	vital_status		no	0..1	PersonStatus					living or dead status
+NamedThing			n/a	n/a						A generic grouping for any identifiable entity
+Person		NamedThing	n/a	n/a						Represents a Person
+PersonCollection			n/a	n/a						A holder for Person objects
+NamedThing	id									
+NamedThing	name									
+NamedThing	description									
+Person	primary_email								^\S+@[\S+\.]+\S+	
+Person	birth_date									
+Person	age_in_years									
+Person	vital_status									
+PersonCollection	people			0..*	Person	True	True			The Person objects held in this collection

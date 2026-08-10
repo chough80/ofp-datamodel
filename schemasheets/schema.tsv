@@ -1,0 +1,3 @@
+Schema	uri	Title	Desc	Schema Prefix	License	SeeAlso
+> schema	id	title	description	default_prefix	license	see_also
+ofp-datamodel	https://w3id.org/terranexus/ofp-datamodel	ofp-datamodel	LinkML data model for Open Footprint-aligned Scope 1/2 emissions reporting	ofp_datamodel	LicenseRef-Custom	https://ofp-datamodel.terranexus.com.au

@@ -1,0 +1,6 @@
+enum	permissible_value	meaning	description
+> enum	permissible_value	meaning	description
+PersonStatus			The vital status of a person
+PersonStatus	ALIVE	PATO:0001421	the person is living
+PersonStatus	DEAD	PATO:0001422	the person is deceased
+PersonStatus	UNKNOWN		the vital status is not known
