@@ -8,12 +8,12 @@ imports:
 - linkml:types
 license: LicenseRef-Custom
 prefixes:
-  ofp_datamodel:
-    prefix_prefix: ofp_datamodel
-    prefix_reference: https://w3id.org/terranexus/ofp-datamodel/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
+  ofp_datamodel:
+    prefix_prefix: ofp_datamodel
+    prefix_reference: https://w3id.org/terranexus/ofp-datamodel/
   biolink:
     prefix_prefix: biolink
     prefix_reference: https://w3id.org/biolink/vocab/
@@ -315,8 +315,6 @@ enums:
       UNKNOWN:
         text: UNKNOWN
         description: the vital status is not known
-        todos:
-        - map this to an ontology
 slots:
   id:
     name: id
@@ -332,6 +330,7 @@ slots:
     - NamedThing
     range: uriorcurie
     required: true
+    multivalued: false
   name:
     name: name
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/name
@@ -344,6 +343,8 @@ slots:
     domain_of:
     - NamedThing
     range: string
+    required: false
+    multivalued: false
   description:
     name: description
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/description
@@ -356,6 +357,8 @@ slots:
     domain_of:
     - NamedThing
     range: string
+    required: false
+    multivalued: false
   primary_email:
     name: primary_email
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/primary_email
@@ -368,6 +371,8 @@ slots:
     domain_of:
     - Person
     range: string
+    required: false
+    multivalued: false
   birth_date:
     name: birth_date
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/birth_date
@@ -380,6 +385,8 @@ slots:
     domain_of:
     - Person
     range: date
+    required: false
+    multivalued: false
   age_in_years:
     name: age_in_years
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/age_in_years
@@ -390,6 +397,8 @@ slots:
     domain_of:
     - Person
     range: integer
+    required: false
+    multivalued: false
   vital_status:
     name: vital_status
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/vital_status
@@ -400,18 +409,75 @@ slots:
     domain_of:
     - Person
     range: PersonStatus
-  personCollection__people:
-    name: personCollection__people
+    required: false
+    multivalued: false
+  people:
+    name: people
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/people
     from_schema: https://w3id.org/terranexus/ofp-datamodel
     slot_uri: ofp_datamodel:people
-    alias: people
     owner: PersonCollection
     domain_of:
     - PersonCollection
-    range: Person
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
+    range: string
+  NamedThing_id:
+    name: NamedThing_id
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/id
+    description: A unique identifier for a thing
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    mappings:
+    - schema:identifier
+    is_a: id
+    domain: NamedThing
+    slot_uri: schema:identifier
+    identifier: true
+    alias: id
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+    multivalued: false
+  NamedThing_name:
+    name: NamedThing_name
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/name
+    description: A human-readable name for a thing
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    mappings:
+    - schema:name
+    is_a: name
+    domain: NamedThing
+    slot_uri: schema:name
+    alias: name
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    is_usage_slot: true
+    usage_slot_name: name
+    range: string
+    required: false
+    multivalued: false
+  NamedThing_description:
+    name: NamedThing_description
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/description
+    description: A human-readable description for a thing
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    mappings:
+    - schema:description
+    is_a: description
+    domain: NamedThing
+    slot_uri: schema:description
+    alias: description
+    owner: NamedThing
+    domain_of:
+    - NamedThing
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
+    required: false
+    multivalued: false
   Person_primary_email:
     name: Person_primary_email
     definition_uri: https://w3id.org/terranexus/ofp-datamodel/primary_email
@@ -429,7 +495,81 @@ slots:
     is_usage_slot: true
     usage_slot_name: primary_email
     range: string
+    required: false
+    multivalued: false
     pattern: ^\S+@[\S+\.]+\S+
+  Person_birth_date:
+    name: Person_birth_date
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/birth_date
+    description: Date on which a person is born
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    mappings:
+    - schema:birthDate
+    is_a: birth_date
+    domain: Person
+    slot_uri: schema:birthDate
+    alias: birth_date
+    owner: Person
+    domain_of:
+    - Person
+    is_usage_slot: true
+    usage_slot_name: birth_date
+    range: date
+    required: false
+    multivalued: false
+  Person_age_in_years:
+    name: Person_age_in_years
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/age_in_years
+    description: Number of years since birth
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    is_a: age_in_years
+    domain: Person
+    slot_uri: ofp_datamodel:age_in_years
+    alias: age_in_years
+    owner: Person
+    domain_of:
+    - Person
+    is_usage_slot: true
+    usage_slot_name: age_in_years
+    range: integer
+    required: false
+    multivalued: false
+  Person_vital_status:
+    name: Person_vital_status
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/vital_status
+    description: living or dead status
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    is_a: vital_status
+    domain: Person
+    slot_uri: ofp_datamodel:vital_status
+    alias: vital_status
+    owner: Person
+    domain_of:
+    - Person
+    is_usage_slot: true
+    usage_slot_name: vital_status
+    range: PersonStatus
+    required: false
+    multivalued: false
+  PersonCollection_people:
+    name: PersonCollection_people
+    definition_uri: https://w3id.org/terranexus/ofp-datamodel/people
+    description: The Person objects held in this collection
+    from_schema: https://w3id.org/terranexus/ofp-datamodel
+    is_a: people
+    domain: PersonCollection
+    slot_uri: ofp_datamodel:people
+    alias: people
+    owner: PersonCollection
+    domain_of:
+    - PersonCollection
+    is_usage_slot: true
+    usage_slot_name: people
+    range: Person
+    required: false
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
 classes:
   NamedThing:
     name: NamedThing
@@ -439,9 +579,16 @@ classes:
     mappings:
     - schema:Thing
     slots:
-    - id
-    - name
-    - description
+    - NamedThing_id
+    - NamedThing_name
+    - NamedThing_description
+    slot_usage:
+      id:
+        name: id
+      name:
+        name: name
+      description:
+        name: description
     class_uri: schema:Thing
   Person:
     name: Person
@@ -450,17 +597,23 @@ classes:
     from_schema: https://w3id.org/terranexus/ofp-datamodel
     is_a: NamedThing
     slots:
-    - id
-    - name
-    - description
+    - NamedThing_id
+    - NamedThing_name
+    - NamedThing_description
     - Person_primary_email
-    - birth_date
-    - age_in_years
-    - vital_status
+    - Person_birth_date
+    - Person_age_in_years
+    - Person_vital_status
     slot_usage:
       primary_email:
         name: primary_email
         pattern: ^\S+@[\S+\.]+\S+
+      birth_date:
+        name: birth_date
+      age_in_years:
+        name: age_in_years
+      vital_status:
+        name: vital_status
     class_uri: ofp_datamodel:Person
   PersonCollection:
     name: PersonCollection
@@ -468,18 +621,20 @@ classes:
     description: A holder for Person objects
     from_schema: https://w3id.org/terranexus/ofp-datamodel
     slots:
-    - personCollection__people
-    attributes:
+    - PersonCollection_people
+    slot_usage:
       people:
         name: people
+        description: The Person objects held in this collection
         range: Person
+        required: false
         multivalued: true
         inlined_as_list: true
     class_uri: ofp_datamodel:PersonCollection
     tree_root: true
 metamodel_version: 1.11.0
 source_file: ofp_datamodel.yaml
-source_file_date: '2026-08-10T08:32:58'
-source_file_size: 2320
-generation_date: '2026-08-10T08:33:08'
+source_file_date: '2026-08-10T09:49:42'
+source_file_size: 3512
+generation_date: '2026-08-10T09:49:53'
 
