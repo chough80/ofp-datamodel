@@ -12,12 +12,12 @@
   "license": "LicenseRef-Custom",
   "prefixes": [
     {
-      "prefix_prefix": "ofp_datamodel",
-      "prefix_reference": "https://w3id.org/terranexus/ofp-datamodel/"
-    },
-    {
       "prefix_prefix": "linkml",
       "prefix_reference": "https://w3id.org/linkml/"
+    },
+    {
+      "prefix_prefix": "ofp_datamodel",
+      "prefix_reference": "https://w3id.org/terranexus/ofp-datamodel/"
     },
     {
       "prefix_prefix": "biolink",
@@ -367,10 +367,7 @@
         },
         {
           "text": "UNKNOWN",
-          "description": "the vital status is not known",
-          "todos": [
-            "map this to an ontology"
-          ]
+          "description": "the vital status is not known"
         }
       ]
     }
@@ -485,18 +482,80 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "personCollection__people",
+      "name": "people",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/people",
       "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
       "slot_uri": "https://w3id.org/terranexus/ofp-datamodel/people",
-      "alias": "people",
       "owner": "PersonCollection",
       "domain_of": [
         "PersonCollection"
       ],
-      "range": "Person",
-      "multivalued": true,
-      "inlined": true,
-      "inlined_as_list": true,
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NamedThing_id",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/id",
+      "description": "A unique identifier for a thing",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "is_a": "id",
+      "domain": "NamedThing",
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "alias": "id",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "id",
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NamedThing_name",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/name",
+      "description": "A human-readable name for a thing",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "mappings": [
+        "http://schema.org/name"
+      ],
+      "is_a": "name",
+      "domain": "NamedThing",
+      "slot_uri": "http://schema.org/name",
+      "alias": "name",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "name",
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "NamedThing_description",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/description",
+      "description": "A human-readable description for a thing",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "mappings": [
+        "http://schema.org/description"
+      ],
+      "is_a": "description",
+      "domain": "NamedThing",
+      "slot_uri": "http://schema.org/description",
+      "alias": "description",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "description",
+      "range": "string",
       "@type": "SlotDefinition"
     },
     {
@@ -520,6 +579,84 @@
       "range": "string",
       "pattern": "^\\S+@[\\S+\\.]+\\S+",
       "@type": "SlotDefinition"
+    },
+    {
+      "name": "Person_birth_date",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/birth_date",
+      "description": "Date on which a person is born",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "mappings": [
+        "http://schema.org/birthDate"
+      ],
+      "is_a": "birth_date",
+      "domain": "Person",
+      "slot_uri": "http://schema.org/birthDate",
+      "alias": "birth_date",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "birth_date",
+      "range": "date",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Person_age_in_years",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/age_in_years",
+      "description": "Number of years since birth",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "is_a": "age_in_years",
+      "domain": "Person",
+      "slot_uri": "https://w3id.org/terranexus/ofp-datamodel/age_in_years",
+      "alias": "age_in_years",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "age_in_years",
+      "range": "integer",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "Person_vital_status",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/vital_status",
+      "description": "living or dead status",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "is_a": "vital_status",
+      "domain": "Person",
+      "slot_uri": "https://w3id.org/terranexus/ofp-datamodel/vital_status",
+      "alias": "vital_status",
+      "owner": "Person",
+      "domain_of": [
+        "Person"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "vital_status",
+      "range": "PersonStatus",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "PersonCollection_people",
+      "definition_uri": "https://w3id.org/terranexus/ofp-datamodel/people",
+      "description": "The Person objects held in this collection",
+      "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
+      "is_a": "people",
+      "domain": "PersonCollection",
+      "slot_uri": "https://w3id.org/terranexus/ofp-datamodel/people",
+      "alias": "people",
+      "owner": "PersonCollection",
+      "domain_of": [
+        "PersonCollection"
+      ],
+      "is_usage_slot": true,
+      "usage_slot_name": "people",
+      "range": "Person",
+      "multivalued": true,
+      "inlined": true,
+      "inlined_as_list": true,
+      "@type": "SlotDefinition"
     }
   ],
   "classes": [
@@ -532,9 +669,9 @@
         "schema:Thing"
       ],
       "slots": [
-        "id",
-        "name",
-        "description"
+        "NamedThing_id",
+        "NamedThing_name",
+        "NamedThing_description"
       ],
       "slot_usage": {},
       "class_uri": "http://schema.org/Thing",
@@ -547,13 +684,13 @@
       "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
       "is_a": "NamedThing",
       "slots": [
-        "id",
-        "name",
-        "description",
+        "NamedThing_id",
+        "NamedThing_name",
+        "NamedThing_description",
         "Person_primary_email",
-        "birth_date",
-        "age_in_years",
-        "vital_status"
+        "Person_birth_date",
+        "Person_age_in_years",
+        "Person_vital_status"
       ],
       "slot_usage": {},
       "class_uri": "https://w3id.org/terranexus/ofp-datamodel/Person",
@@ -565,18 +702,9 @@
       "description": "A holder for Person objects",
       "from_schema": "https://w3id.org/terranexus/ofp-datamodel",
       "slots": [
-        "personCollection__people"
+        "PersonCollection_people"
       ],
       "slot_usage": {},
-      "attributes": [
-        {
-          "name": "people",
-          "range": "Person",
-          "multivalued": true,
-          "inlined_as_list": true,
-          "@type": "SlotDefinition"
-        }
-      ],
       "class_uri": "https://w3id.org/terranexus/ofp-datamodel/PersonCollection",
       "tree_root": true,
       "@type": "ClassDefinition"
@@ -584,9 +712,9 @@
   ],
   "metamodel_version": "1.11.0",
   "source_file": "ofp_datamodel.yaml",
-  "source_file_date": "2026-08-10T16:12:04",
-  "source_file_size": 2320,
-  "generation_date": "2026-08-10T16:50:43",
+  "source_file_date": "2026-08-11T14:34:52",
+  "source_file_size": 3513,
+  "generation_date": "2026-08-12T21:10:56",
   "@type": "SchemaDefinition",
   "@context": [
     "project\\jsonld/ofp_datamodel.context.jsonld",

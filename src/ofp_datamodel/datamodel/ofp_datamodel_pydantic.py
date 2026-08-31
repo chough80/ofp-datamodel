@@ -114,7 +114,10 @@ class NamedThing(ConfiguredBaseModel):
     A generic grouping for any identifiable entity
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'schema:Thing',
-         'from_schema': 'https://w3id.org/terranexus/ofp-datamodel'})
+         'from_schema': 'https://w3id.org/terranexus/ofp-datamodel',
+         'slot_usage': {'description': {'name': 'description'},
+                        'id': {'name': 'id'},
+                        'name': {'name': 'name'}}})
 
     id: str = Field(default=..., description="""A unique identifier for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:identifier'} })
     name: Optional[str] = Field(default=None, description="""A human-readable name for a thing""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'slot_uri': 'schema:name'} })
@@ -126,8 +129,11 @@ class Person(NamedThing):
     Represents a Person
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/terranexus/ofp-datamodel',
-         'slot_usage': {'primary_email': {'name': 'primary_email',
-                                          'pattern': '^\\S+@[\\S+\\.]+\\S+'}}})
+         'slot_usage': {'age_in_years': {'name': 'age_in_years'},
+                        'birth_date': {'name': 'birth_date'},
+                        'primary_email': {'name': 'primary_email',
+                                          'pattern': '^\\S+@[\\S+\\.]+\\S+'},
+                        'vital_status': {'name': 'vital_status'}}})
 
     primary_email: Optional[str] = Field(default=None, description="""The main email address of a person""", json_schema_extra = { "linkml_meta": {'domain_of': ['Person'], 'slot_uri': 'schema:email'} })
     birth_date: Optional[date] = Field(default=None, description="""Date on which a person is born""", json_schema_extra = { "linkml_meta": {'domain_of': ['Person'], 'slot_uri': 'schema:birthDate'} })
@@ -155,9 +161,17 @@ class PersonCollection(ConfiguredBaseModel):
     """
     A holder for Person objects
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/terranexus/ofp-datamodel', 'tree_root': True})
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/terranexus/ofp-datamodel',
+         'slot_usage': {'people': {'description': 'The Person objects held in this '
+                                                  'collection',
+                                   'inlined_as_list': True,
+                                   'multivalued': True,
+                                   'name': 'people',
+                                   'range': 'Person',
+                                   'required': False}},
+         'tree_root': True})
 
-    people: Optional[list[Person]] = Field(default=None, json_schema_extra = { "linkml_meta": {'domain_of': ['PersonCollection']} })
+    people: Optional[list[Person]] = Field(default=None, description="""The Person objects held in this collection""", json_schema_extra = { "linkml_meta": {'domain_of': ['PersonCollection']} })
 
 
 # Model rebuild

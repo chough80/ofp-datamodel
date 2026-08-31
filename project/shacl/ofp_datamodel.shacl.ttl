@@ -9,7 +9,7 @@
 schema1:Thing a sh:NodeShape ;
     rdfs:comment "A generic grouping for any identifiable entity" ;
     sh:closed true ;
-    sh:ignoredProperties ( ofp_datamodel:age_in_years schema1:birthDate schema1:email ofp_datamodel:vital_status rdf:type ) ;
+    sh:ignoredProperties ( ofp_datamodel:age_in_years ofp_datamodel:vital_status schema1:email schema1:birthDate rdf:type ) ;
     sh:property [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
@@ -34,6 +34,7 @@ ofp_datamodel:PersonCollection a sh:NodeShape ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
     sh:property [ sh:class ofp_datamodel:Person ;
+            sh:description "The Person objects held in this collection" ;
             sh:nodeKind sh:IRI ;
             sh:order 0 ;
             sh:path ofp_datamodel:people ] ;
@@ -43,12 +44,17 @@ ofp_datamodel:Person a sh:NodeShape ;
     rdfs:comment "Represents a Person" ;
     sh:closed true ;
     sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "A human-readable name for a thing" ;
+    sh:property [ sh:description "living or dead status" ;
+            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
+            sh:maxCount 1 ;
+            sh:order 3 ;
+            sh:path ofp_datamodel:vital_status ],
+        [ sh:datatype xsd:integer ;
+            sh:description "Number of years since birth" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path schema1:name ],
+            sh:order 2 ;
+            sh:path ofp_datamodel:age_in_years ],
         [ sh:description "A unique identifier for a thing" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:IRI ;
@@ -66,23 +72,18 @@ ofp_datamodel:Person a sh:NodeShape ;
             sh:nodeKind sh:Literal ;
             sh:order 6 ;
             sh:path schema1:description ],
-        [ sh:description "living or dead status" ;
-            sh:in ( PATO:0001421 PATO:0001422 "UNKNOWN" ) ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path ofp_datamodel:vital_status ],
-        [ sh:datatype xsd:integer ;
-            sh:description "Number of years since birth" ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path ofp_datamodel:age_in_years ],
         [ sh:datatype xsd:string ;
             sh:description "The main email address of a person" ;
             sh:maxCount 1 ;
             sh:nodeKind sh:Literal ;
             sh:order 0 ;
             sh:path schema1:email ;
-            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ] ;
+            sh:pattern "^\\S+@[\\S+\\.]+\\S+" ],
+        [ sh:datatype xsd:string ;
+            sh:description "A human-readable name for a thing" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path schema1:name ] ;
     sh:targetClass ofp_datamodel:Person .
 

@@ -46,6 +46,7 @@ export interface Person extends NamedThing {
  * A holder for Person objects
  */
 export interface PersonCollection {
+    /** The Person objects held in this collection */
     people?: Person[],
 }
 

@@ -1,5 +1,5 @@
 # Auto generated from ofp_datamodel.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-08-10T16:50:43
+# Generation date: 2026-08-12T21:10:56
 # Schema: ofp-datamodel
 #
 # id: https://w3id.org/terranexus/ofp-datamodel
@@ -220,9 +220,30 @@ slots.age_in_years = Slot(uri=OFP_DATAMODEL.age_in_years, name="age_in_years", c
 slots.vital_status = Slot(uri=OFP_DATAMODEL.vital_status, name="vital_status", curie=OFP_DATAMODEL.curie('vital_status'),
                    model_uri=OFP_DATAMODEL.vital_status, domain=None, range=Optional[Union[str, "PersonStatus"]])
 
-slots.personCollection__people = Slot(uri=OFP_DATAMODEL.people, name="personCollection__people", curie=OFP_DATAMODEL.curie('people'),
-                   model_uri=OFP_DATAMODEL.personCollection__people, domain=None, range=Optional[Union[dict[Union[str, PersonId], Union[dict, Person]], list[Union[dict, Person]]]])
+slots.people = Slot(uri=OFP_DATAMODEL.people, name="people", curie=OFP_DATAMODEL.curie('people'),
+                   model_uri=OFP_DATAMODEL.people, domain=None, range=Optional[str])
+
+slots.NamedThing_id = Slot(uri=SCHEMA.identifier, name="NamedThing_id", curie=SCHEMA.curie('identifier'),
+                   model_uri=OFP_DATAMODEL.NamedThing_id, domain=NamedThing, range=Union[str, NamedThingId])
+
+slots.NamedThing_name = Slot(uri=SCHEMA.name, name="NamedThing_name", curie=SCHEMA.curie('name'),
+                   model_uri=OFP_DATAMODEL.NamedThing_name, domain=NamedThing, range=Optional[str])
+
+slots.NamedThing_description = Slot(uri=SCHEMA.description, name="NamedThing_description", curie=SCHEMA.curie('description'),
+                   model_uri=OFP_DATAMODEL.NamedThing_description, domain=NamedThing, range=Optional[str])
 
 slots.Person_primary_email = Slot(uri=SCHEMA.email, name="Person_primary_email", curie=SCHEMA.curie('email'),
                    model_uri=OFP_DATAMODEL.Person_primary_email, domain=Person, range=Optional[str],
                    pattern=re.compile(r'^\S+@[\S+\.]+\S+'))
+
+slots.Person_birth_date = Slot(uri=SCHEMA.birthDate, name="Person_birth_date", curie=SCHEMA.curie('birthDate'),
+                   model_uri=OFP_DATAMODEL.Person_birth_date, domain=Person, range=Optional[Union[str, XSDDate]])
+
+slots.Person_age_in_years = Slot(uri=OFP_DATAMODEL.age_in_years, name="Person_age_in_years", curie=OFP_DATAMODEL.curie('age_in_years'),
+                   model_uri=OFP_DATAMODEL.Person_age_in_years, domain=Person, range=Optional[int])
+
+slots.Person_vital_status = Slot(uri=OFP_DATAMODEL.vital_status, name="Person_vital_status", curie=OFP_DATAMODEL.curie('vital_status'),
+                   model_uri=OFP_DATAMODEL.Person_vital_status, domain=Person, range=Optional[Union[str, "PersonStatus"]])
+
+slots.PersonCollection_people = Slot(uri=OFP_DATAMODEL.people, name="PersonCollection_people", curie=OFP_DATAMODEL.curie('people'),
+                   model_uri=OFP_DATAMODEL.PersonCollection_people, domain=PersonCollection, range=Optional[Union[dict[Union[str, PersonId], Union[dict, Person]], list[Union[dict, Person]]]])

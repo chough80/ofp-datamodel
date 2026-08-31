@@ -28,7 +28,6 @@
          "@id": "schema:name"
       },
       "people": {
-         "@type": "@id",
          "@id": "people"
       },
       "primary_email": {
@@ -49,7 +48,13 @@
          "@id": "Person"
       },
       "PersonCollection": {
-         "@id": "PersonCollection"
+         "@id": "PersonCollection",
+         "@context": {
+            "people": {
+               "@id": "people",
+               "@type": "@id"
+            }
+         }
       }
    }
 }

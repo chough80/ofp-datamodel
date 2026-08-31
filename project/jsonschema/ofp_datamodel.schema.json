@@ -90,6 +90,7 @@
             "description": "A holder for Person objects",
             "properties": {
                 "people": {
+                    "description": "The Person objects held in this collection",
                     "items": {
                         "$ref": "#/$defs/Person"
                     },
@@ -120,6 +121,7 @@
     "metamodel_version": "1.11.0",
     "properties": {
         "people": {
+            "description": "The Person objects held in this collection",
             "items": {
                 "$ref": "#/$defs/Person"
             },
